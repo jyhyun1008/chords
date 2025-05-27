@@ -1,5 +1,6 @@
 INFO
 
+TITLE: 제로부터 시작하는 러브송
 KEY: E
 BPM: 160
 BEAT: 4/4
@@ -7,7 +8,7 @@ BEAT: 4/4
 ---
 CHORDS
 
-INTRO
+* INTRO
 
 A___B___ / 
 G#7__C#m____ / 
@@ -18,7 +19,7 @@ G#7__C#m____ /
 F#m_______ / 
 G#7_______ / 
 
-VERSE1
+* VERSE1
 
 E_______ / 햇살
 E7sus4_______ / 투명하게 울리

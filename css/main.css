@@ -25,7 +25,8 @@ body {
     background: #f8f8f8;
 }
 
-.app {
+#app {
     width: 100%;
     max-width: 900px;
+    margin: 0 auto;
 }

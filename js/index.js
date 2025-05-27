@@ -22,5 +22,15 @@ addEventListener("DOMContentLoaded", async (event) => {
         var result = await fetch(`https://raw.githubusercontent.com/${USERNAME}/${REPONAME}/main/md/${music}.md`)
         var md = await result.text()
 
+        var info = md.split('INFO')[1].split('---')[0]
+        var title = info.split('TITLE: ')[1]?info.split('TITLE ')[1].split('\n')[0]:''
+        document.querySelector('#music-title').innerText = title
+        var key = info.split('KEY: ')[1]?info.split('KEY: ')[1].split('\n')[0]:''
+        document.querySelector('#key').innerText = key+' Key'
+        var bpm = info.split('BPM: ')[1]?info.split('BPM: ')[1].split('\n')[0]:''
+        document.querySelector('#bpm').innerText = bpm+' BPM'
+        var beat = info.split('BEAT: ')[1]?info.split('BEAT: ')[1].split('\n')[0]:''
+        document.querySelector('#beat').innerText = beat
+
     }
 })
