@@ -23,7 +23,7 @@ addEventListener("DOMContentLoaded", async (event) => {
         var md = await result.text()
 
         var info = md.split('INFO')[1].split('---')[0]
-        var title = info.split('TITLE: ')[1]?info.split('TITLE ')[1].split('\n')[0]:''
+        var title = info.split('TITLE: ')[1]?info.split('TITLE: ')[1].split('\n')[0]:''
         document.querySelector('#music-title').innerText = title
         var key = info.split('KEY: ')[1]?info.split('KEY: ')[1].split('\n')[0]:''
         document.querySelector('#key').innerText = key+' Key'
@@ -32,5 +32,37 @@ addEventListener("DOMContentLoaded", async (event) => {
         var beat = info.split('BEAT: ')[1]?info.split('BEAT: ')[1].split('\n')[0]:''
         document.querySelector('#beat').innerText = beat
 
+        var chords = md.split('CHORDS')[1]
+        var lines = chords.split('\n')
+        var songform = 'INTRO'
+        var chordArray = []
+        var lyricsArray = []
+        var songformArray = []
+        for (var i=0; i<lines.length; i++){
+            if (lines[i][0] == '*') {
+                songform = lines[i].split('* ')[1]
+            } else if (lines[i] != ''){
+                lines[i] = lines[i].replaceAll('_', ' _')
+                lines[i] = lines[i].replaceAll(/_([A-G]+)/g, `_ $1`)
+                chordArray.push(lines[i].split(' /')[0].split(' '))
+                lyricsArray.push(lines[i].split(' /')[1])
+                songformArray.push(songform)
+            }
+        }
+        for (var j=0; j<chordArray.length; j++){
+            if (j > 0 && songformArray[j] != songformArray[j-1]) {
+                document.querySelector('#content').innerHTML += `<div class="songform">${songformArray[j]}</div><div class="content" id="${songformArray[j]}"></div>`
+            } else if (j==0) {
+                document.querySelector('#content').innerHTML += `<div class="songform">${songformArray[j]}</div><div class="content" id="${songformArray[j]}"></div>`
+            }
+            document.querySelector(`#${songformArray[j]}`).innerHTML += `<div class="madi"><div class="chords" id="chords${j}"></div><div class="lyrics">${lyricsArray[j]}</div></div>`
+            for (var k=0; k<chordArray[j].length; k++){
+                if (chordArray[j][k] == '_'){
+                    document.querySelector(`#chords${j}`).innerHTML += `<div> </div>`
+                } else {
+                    document.querySelector(`#chords${j}`).innerHTML += `<div>${chordArray[j][k]}</div>`
+                }
+            }
+        }
     }
 })

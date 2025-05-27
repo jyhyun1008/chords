@@ -27,6 +27,50 @@ body {
 
 #app {
     width: 100%;
-    max-width: 900px;
+    max-width: 940px;
     margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+}
+
+#info {
+    margin-bottom: 20px;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.songform {
+    font-weight: 700;
+}
+
+.madi {
+    margin: 10px 0;
+    border-right: #000 solid 1px;
+    padding: 2px;
+}
+
+.chords {
+    display: flex;
+    flex-grow: 1;
+    padding: 5px 0;
+}
+
+.madi:nth-child(4n+1) {
+    border-left: #000 solid 1px;
+}
+
+.chords > div {
+    width: 100%;
+    border-right: #e0e0e0 solid 1px;
+}
+
+.chords > div:nth-child(8n) {
+    border-right: white solid 0px;
+}
+
+.lyrics {
+    height: 1rem;
 }
